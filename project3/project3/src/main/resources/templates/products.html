@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jmaster.io Dashboard</title>
+</head>
+
+<body>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Tên sản phẩm</th>
+			<th>Mua hang</th>
+		</tr>
+		<tr th:each="p : ${products}">
+			<td th:text=${p.id}></td>
+			<td th:text=${p.name}></td>
+			<td><a th:href="@{'/add-to-cart?id=' + ${p.id}}">
+			</a></td>
+		</tr>
+	</table>
+</body>
+
+</html>

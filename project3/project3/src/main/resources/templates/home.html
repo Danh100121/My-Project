@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Jmaster Fake</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
+</head>
+<body>
+	<div class="container-fluid">
+		<div th:replace="../static/fragment/header :: header"></div>
+		<div class="row" style="padding-top: 50px;">
+			<div class="col-12">
+				<img
+					style="width: 1400px; padding-left: 140px; justify-content: center;"
+					th:src="@{/img/lop-thang-3.png}" />
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h3 class="display-5 text-left" style="margin: 20px;">Danh sách
+					sản phẩm</h3>
+			</div>
+		</div>
+		<th:block th:each="category: ${list}">
+			<h4 style="margin: 20px;" th:text="${category.name}"></h4>
+			<div class="row">
+
+				<th:block th:each="product : ${category.products}">
+
+					<div class="col-3">
+
+						<div class="card text-left">
+							<img class="card-img-top"
+								th:src="@{'/download-file?image=' + ${product.avatar}}" alt="">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${ product.name}"></h5>
+								<h5 class="card-title"
+									th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' vnđ'}"></h5>
+								<p class="card-text" th:text="${product.descreption}"></p>
+								<a name="" id="" class="btn btn-primary"
+									th:href="@{'/add-to-cart?id=' + ${product.id}}" role="button"><i
+									style="padding-right: 10px;" class="fa fa-plus"
+									aria-hidden="true"></i>Add to cart</a> <a name="" id=""
+									class="btn btn-primary" href="#" role="button"><i
+									style="padding-right: 10px;" class="fa fa-info"
+									aria-hidden="true"></i>Detail</a>
+
+							</div>
+						</div>
+
+					</div>
+				</th:block>
+			</div>
+		</th:block>
+	</div>
+	<!-- Button trigger modal -->
+
+
+	<!-- Modal -->
+	<!-- Button trigger modal -->
+
+	<!-- Modal -->
+	<!-- Button trigger modal -->
+	>
+
+	<!-- Modal -->
+	<div th:replace="../static/fragment/modalcart :: cartmodal"></div>
+	</div>
+</body>
+</html>

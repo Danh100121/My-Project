@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Jmaster Fake</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<div class="container-fluid">
+		<div th:replace="../static/fragment/header :: header"></div>
+		<div class="row" style="margin-top: 100px;">
+			<div class="col-12">
+				<h3>Chi tiết giỏ hàng</h3>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Tên</th>
+							<th>Gía</th>
+							<th>Số lượng</th>
+							<th>Tạm tính</th>
+							<th>Chọn</th>
+						</tr>
+					</thead>
+					<tbody>
+	
+
+							<tr th:each="entry: ${session.cart}">
+								<td th:text="&{entry.key}"></td>
+								<td th:text="${entry.value.product.name}"></td>
+								<td th:text="${entry.value.price}"></td>
+								<td th:text="${entry.value.quantity}"></td>
+								<td th:text="${entry.value.quantity * entry.price}"></td>
+								<td>
+								<a th:href="@{'/delete-cart?id=' + &{entry.key}}">xoa</a>
+								</td>
+							</tr>
+
+							<th:block>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+
+							<td><h6>Tổng tiền</h6></td>
+							<td th:text="${Total}"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+
+							<td><h6
+									th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + ' vnđ'}"></h6></td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<a th:href="@{/member/payment}">Thanh toán</a>
+		</div>
+	</div>
+</body>
+</html>
